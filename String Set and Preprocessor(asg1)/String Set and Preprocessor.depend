@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1475456764 source:/home/moosey/Cmps-104a/String Set and Preprocessor(asg1)/src/stringset.cpp
+	"stringset.h"
+
+1475456449 /home/moosey/Cmps-104a/String Set and Preprocessor(asg1)/include/stringset.h
+	<string>
+	<unordered_set>
+
+1475455383 source:/home/moosey/Cmps-104a/String Set and Preprocessor(asg1)/main.cpp
+	<iostream>
+	"stringset.h"
+
