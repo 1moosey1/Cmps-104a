@@ -21,5 +21,5 @@ int main() {
     set.intern_stringset("llo6");
     set.dump_stringset(stdout);
 
-    return 0;
+    return EXIT_SUCCESS;
 }

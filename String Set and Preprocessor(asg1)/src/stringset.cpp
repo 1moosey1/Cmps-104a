@@ -38,7 +38,6 @@ void stringset::dump_stringset(FILE* out) {
             else
                 fprintf(out, "            %4s   ", "");
 
-
             const string* str = &*itor;
             fprintf(out, "%22zu %p->\"%s\"\n", set_hash_fn(*str),
                 str, str->c_str());
