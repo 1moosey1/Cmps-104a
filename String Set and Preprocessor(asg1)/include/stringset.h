@@ -5,6 +5,8 @@
 #include <unordered_set>
 using namespace std;
 
+#include <stdio.h>
+
 class stringset {
 
     public:
