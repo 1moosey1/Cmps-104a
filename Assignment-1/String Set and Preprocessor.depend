@@ -11,3 +11,17 @@
 	<iostream>
 	"stringset.h"
 
+1475518488 source:/home/moosey/Code-Projects/Cmps-104a/Assignment-1/src/stringset.cpp
+	"stringset.h"
+
+1475518488 /home/moosey/Code-Projects/Cmps-104a/Assignment-1/include/stringset.h
+	<string>
+	<unordered_set>
+	<stdio.h>
+
+1475524438 source:/home/moosey/Code-Projects/Cmps-104a/Assignment-1/main.cpp
+	<iostream>
+	<string>
+	<unistd.h>
+	"stringset.h"
+

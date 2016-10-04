@@ -1,25 +1,53 @@
 #include <iostream>
-#include "stringset.h"
-
 #include <string>
 using namespace std;
 
-int main() {
+#include <stdio.h>
+#include <unistd.h>
+#include "stringset.h"
 
+char* options(int argc, char* argv[], const char* options) {
+
+    int op;
+    while( (op = getopt(argc, argv, options)) != -1) {
+
+        switch(op) {
+
+            case 'l':
+                //Debug yylex() with yy_flex_debug = 1;
+                break;
+
+            case 'y':
+                //Debug yyparse() with yydebug = 1
+                break;
+
+            case '@':
+                //Implement
+                break;
+
+            case 'D':
+                //Implement
+                break;
+
+            case '?':
+
+                if(optopt == '@' || optopt == 'D')
+                    fprintf(stderr, "The option -%c requires an argument\n", optopt);
+                else
+                    fprintf(stderr, "Invalid option: -%c\n", optopt);
+        }
+    }
+
+    if(argc > optind)
+        fprintf(stdout, "The extra argument is -> %s\n", argv[optind]);
+
+    return nullptr;
+}
+
+int main(int argc, char* argv[]) {
+
+    options(argc, argv, "ly@:D:");
     stringset set;
-    set.intern_stringset("Hello");
-    set.intern_stringset("Hello2");
-    set.intern_stringset("Hello3");
-    set.intern_stringset("Hello4");
-    set.intern_stringset("Hello5");
-    set.intern_stringset("Hello6");
-    set.intern_stringset("Hell");
-    set.intern_stringset("Hel2");
-    set.intern_stringset("He3");
-    set.intern_stringset("H4");
-    set.intern_stringset("ello5");
-    set.intern_stringset("llo6");
-    set.dump_stringset(stdout);
 
     return EXIT_SUCCESS;
 }
