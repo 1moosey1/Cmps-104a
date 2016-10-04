@@ -1,3 +1,8 @@
+// Juan Gonzalez
+// 1497521
+// CMPS104a Assignment 1
+// Modified from Wesley Mackey's stringset.cpp
+
 #include "stringset.h"
 
 stringset::stringset() {

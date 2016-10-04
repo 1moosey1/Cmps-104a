@@ -1,3 +1,8 @@
+// Juan Gonzalez
+// 1497521
+// CMPS104a Assignment 1
+// Modified from Wesley Mackey's stringset.h
+
 #ifndef __STRING_SET__
 #define __STRING_SET__
 

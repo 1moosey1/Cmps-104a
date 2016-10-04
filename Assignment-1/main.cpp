@@ -1,13 +1,20 @@
+// Juan Gonzalez
+// 1497521
+// CMPS104a Assignment 1
+
 #include <iostream>
 #include <string>
 using namespace std;
 
 #include <stdio.h>
 #include <unistd.h>
+#include <libgen.h>
+#include <string.h>
 
 #include "auxlib.h"
 #include "stringset.h"
 
+// Scans through command line options using optget(3)
 char* options(int argc, char* argv[], const char* options) {
 
     int op;
@@ -41,14 +48,33 @@ char* options(int argc, char* argv[], const char* options) {
     }
 
     if(argc > optind)
-        fprintf(stdout, "The extra argument is -> %s\n", argv[optind]);
+        return argv[optind];
 
     return nullptr;
 }
 
+// Used to verify whether the file is a proper .oc
+// Returns a bool true if valid - false if invalid
+bool verify(char* file_name) {
+
+    char* pos = strrchr(file_name, '.');
+    DEBUGF('f', "File Verification: %d\n", pos && (strcmp(pos, ".oc") == 0));
+
+    return pos && (strcmp(pos, ".oc") == 0);
+}
+
 int main(int argc, char* argv[]) {
 
-    options(argc, argv, "ly@:D:");
+    char* file_name = options(argc, argv, "ly@:D:");
+    DEBUGF('f', "File Name: %s\n", file_name);
+    if(!file_name || !verify(file_name)) {
+
+        fprintf(stderr, "Invalid .oc program file or was not provided!");
+        return EXIT_FAILURE;
+    }
+
+    //File* output = popen();
+
     stringset set;
 
     return EXIT_SUCCESS;
