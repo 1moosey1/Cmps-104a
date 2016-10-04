@@ -1,6 +1,13 @@
-// Juan Gonzalez
-// 1497521
-// CMPS104a Assignment 1
+/* Juan Gonzalez
+    1497521
+    CMPS104a Assignment 1
+
+    DEBUGGING
+    -@
+    @ - Enable all debug flags
+    f - Debug filename
+    o - Debug command line to pipe
+*/
 
 #include <iostream>
 #include <string>
@@ -14,8 +21,14 @@ using namespace std;
 #include "auxlib.h"
 #include "stringset.h"
 
+struct file_op {
+
+    char* file_name;
+    string commands = "cpp";
+};
+
 // Scans through command line options using optget(3)
-char* options(int argc, char* argv[], const char* options) {
+void options(int argc, char* argv[], const char* options, file_op &ops) {
 
     int op;
     while( (op = getopt(argc, argv, options)) != -1) {
@@ -35,7 +48,9 @@ char* options(int argc, char* argv[], const char* options) {
                 break;
 
             case 'D':
-                //Implement --- Pass option and argument to cpp
+                ops.commands.append(" -D");
+                ops.commands.append(optarg);
+                ops.commands.append(" ");
                 break;
 
             case '?':
@@ -47,10 +62,13 @@ char* options(int argc, char* argv[], const char* options) {
         }
     }
 
-    if(argc > optind)
-        return argv[optind];
+    if(argc > optind) {
 
-    return nullptr;
+        DEBUGF('f', "argv[optind] = %s\n", argv[optind]);
+        ops.file_name = &*argv[optind];
+    }
+    else
+        ops.file_name = nullptr;
 }
 
 // Used to verify whether the file is a proper .oc
@@ -65,15 +83,20 @@ bool verify(char* file_name) {
 
 int main(int argc, char* argv[]) {
 
-    char* file_name = options(argc, argv, "ly@:D:");
-    DEBUGF('f', "File Name: %s\n", file_name);
-    if(!file_name || !verify(file_name)) {
+    file_op ops;
+    options(argc, argv, "ly@:D:", ops);
+    DEBUGF('f', "File Name: %s\n", ops.file_name);
+    if(!ops.file_name || !verify(ops.file_name)) {
 
         fprintf(stderr, "Invalid .oc program file or was not provided!");
         return EXIT_FAILURE;
     }
 
-    //File* output = popen();
+    ops.commands.append(ops.file_name);
+    DEBUGF('o', "CPP command line: %s\n", ops.commands.c_str());
+
+    //FILE* cpp = popen(ops.commands.c_str(), "r");
+    //pclose(cpp);
 
     stringset set;
 
