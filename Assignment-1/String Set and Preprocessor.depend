@@ -25,3 +25,11 @@
 	<unistd.h>
 	"stringset.h"
 
+1475549197 source:/home/moosey/Cmps-104a/Assignment-1/src/stringset.cpp
+	"stringset.h"
+
+1475549197 /home/moosey/Cmps-104a/Assignment-1/include/stringset.h
+	<string>
+	<unordered_set>
+	<stdio.h>
+

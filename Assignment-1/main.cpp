@@ -4,6 +4,8 @@ using namespace std;
 
 #include <stdio.h>
 #include <unistd.h>
+
+#include "auxlib.h"
 #include "stringset.h"
 
 char* options(int argc, char* argv[], const char* options) {
@@ -22,11 +24,11 @@ char* options(int argc, char* argv[], const char* options) {
                 break;
 
             case '@':
-                //Implement
+                set_debugflags(optarg);
                 break;
 
             case 'D':
-                //Implement
+                //Implement --- Pass option and argument to cpp
                 break;
 
             case '?':
