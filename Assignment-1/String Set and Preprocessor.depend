@@ -48,11 +48,13 @@
 1475559645 /home/moosey/Cmps-104a/Assignment-1/include/auxlib.h
 	<stdarg.h>
 
-1475562355 source:/home/moosey/Cmps-104a/Assignment-1/main.cpp
+1475625768 source:/home/moosey/Cmps-104a/Assignment-1/main.cpp
 	<iostream>
 	<string>
 	<stdio.h>
 	<unistd.h>
+	<libgen.h>
+	<string.h>
 	"auxlib.h"
 	"stringset.h"
 

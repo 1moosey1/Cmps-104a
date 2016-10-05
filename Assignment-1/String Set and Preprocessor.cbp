@@ -21,8 +21,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/auxlib.h" />
 		<Unit filename="include/stringset.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/auxlib.cpp" />
 		<Unit filename="src/stringset.cpp" />
 		<Extensions>
 			<code_completion />

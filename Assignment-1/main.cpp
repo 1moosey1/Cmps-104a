@@ -23,17 +23,17 @@ using namespace std;
 
 struct file_op {
 
-    char* file_name;
-    string commands = "cpp";
+    char * file_name;
+    string commands = "cpp ";
 };
 
 // Scans through command line options using optget(3)
-void options(int argc, char* argv[], const char* options, file_op &ops) {
+void options( int argc, char * argv[], const char * options, file_op &ops ) {
 
     int op;
-    while( (op = getopt(argc, argv, options)) != -1) {
+    while ( (op = getopt( argc, argv, options )) != -1 ) {
 
-        switch(op) {
+        switch ( op ) {
 
             case 'l':
                 //Debug yylex() with yy_flex_debug = 1;
@@ -48,23 +48,23 @@ void options(int argc, char* argv[], const char* options, file_op &ops) {
                 break;
 
             case 'D':
-                ops.commands.append(" -D");
-                ops.commands.append(optarg);
+                ops.commands.append("-D ");
+                ops.commands.append(optarg );
                 ops.commands.append(" ");
                 break;
 
             case '?':
 
-                if(optopt == '@' || optopt == 'D')
+                if ( optopt == '@' || optopt == 'D' )
                     fprintf(stderr, "The option -%c requires an argument\n", optopt);
                 else
                     fprintf(stderr, "Invalid option: -%c\n", optopt);
         }
     }
 
-    if(argc > optind) {
+    if ( argc > optind ) {
 
-        DEBUGF('f', "argv[optind] = %s\n", argv[optind]);
+        DEBUGF( 'f', "argv[optind] = %s\n", argv[optind] );
         ops.file_name = &*argv[optind];
     }
     else
@@ -73,32 +73,63 @@ void options(int argc, char* argv[], const char* options, file_op &ops) {
 
 // Used to verify whether the file is a proper .oc
 // Returns a bool true if valid - false if invalid
-bool verify(char* file_name) {
+bool verify( char * file_name ) {
 
-    char* pos = strrchr(file_name, '.');
-    DEBUGF('f', "File Verification: %d\n", pos && (strcmp(pos, ".oc") == 0));
+    char * pos = strrchr(file_name, '.');
+    DEBUGF( 'f', "File Verification: %d\n", pos && (strcmp(pos, ".oc") == 0) );
 
     return pos && (strcmp(pos, ".oc") == 0);
 }
 
-int main(int argc, char* argv[]) {
+void read_pipe( const char * cmd_line, stringset &set ) {
+
+    FILE * cpp = popen(cmd_line, "r");
+    if ( !cpp ) {
+
+        fprintf(stderr, "Error running cpp!");
+        set_exitstatus( EXIT_FAILURE );
+        return;
+    }
+
+    int line_size = 1024;
+    char linein[line_size], *token, *saveptr;
+
+    while ( fgets( linein, line_size, cpp ) ) {
+
+        DEBUGF( 'o', "Line read in (fgets) -> %s\n", linein );
+
+        token = strtok_r(linein, " \t\n", &saveptr);
+        while ( token ) {
+
+            DEBUGF( 'o', "Token -> %s\n", token );
+
+            if ( strcmp ( "#", token ) == 0 ) break;
+            set.intern_stringset( token );
+            token = strtok_r(nullptr, " \t\n", &saveptr);
+        }
+    }
+
+    pclose(cpp);
+}
+
+int main( int argc, char * argv[] ) {
 
     file_op ops;
     options(argc, argv, "ly@:D:", ops);
-    DEBUGF('f', "File Name: %s\n", ops.file_name);
-    if(!ops.file_name || !verify(ops.file_name)) {
+    DEBUGF( 'f', "File Name: %s\n", ops.file_name );
+    if ( !ops.file_name || !verify(ops.file_name) ) {
 
         fprintf(stderr, "Invalid .oc program file or was not provided!");
-        return EXIT_FAILURE;
+        set_exitstatus( EXIT_FAILURE );
+        return get_exitstatus();
     }
 
     ops.commands.append(ops.file_name);
-    DEBUGF('o', "CPP command line: %s\n", ops.commands.c_str());
-
-    //FILE* cpp = popen(ops.commands.c_str(), "r");
-    //pclose(cpp);
+    DEBUGF( 'o', "CPP command line: %s\n", ops.commands.c_str() );
 
     stringset set;
+    read_pipe(ops.commands.c_str(), set);
+    set.dump_stringset(stdout);
 
-    return EXIT_SUCCESS;
+    return get_exitstatus();
 }
