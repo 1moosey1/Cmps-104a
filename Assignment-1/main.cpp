@@ -112,6 +112,17 @@ void read_pipe( const char * cmd_line, stringset &set ) {
     pclose(cpp);
 }
 
+void write_file( char * path, string extension, stringset set ) {
+
+    string file_name = basename(path);
+    file_name.append(extension);
+    DEBUGF('f', "Writing to file -> %s\n", file_name.c_str());
+
+    FILE * output = fopen(file_name.c_str(), "w");
+    set.dump_stringset(output);
+    fclose(output);
+}
+
 int main( int argc, char * argv[] ) {
 
     file_op ops;
@@ -129,7 +140,7 @@ int main( int argc, char * argv[] ) {
 
     stringset set;
     read_pipe(ops.commands.c_str(), set);
-    set.dump_stringset(stdout);
+    write_file(ops.file_name, ".str", set);
 
     return get_exitstatus();
 }

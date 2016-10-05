@@ -11,10 +11,10 @@
 	<iostream>
 	"stringset.h"
 
-1475518488 source:/home/moosey/Code-Projects/Cmps-104a/Assignment-1/src/stringset.cpp
+1475704920 source:/home/moosey/Code-Projects/Cmps-104a/Assignment-1/src/stringset.cpp
 	"stringset.h"
 
-1475518488 /home/moosey/Code-Projects/Cmps-104a/Assignment-1/include/stringset.h
+1475704920 /home/moosey/Code-Projects/Cmps-104a/Assignment-1/include/stringset.h
 	<string>
 	<unordered_set>
 	<stdio.h>
@@ -57,4 +57,19 @@
 	<string.h>
 	"auxlib.h"
 	"stringset.h"
+
+1475704920 source:/home/moosey/Code-Projects/Cmps-104a/Assignment-1/src/auxlib.cpp
+	<assert.h>
+	<errno.h>
+	<libgen.h>
+	<limits.h>
+	<stdarg.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<wait.h>
+	"auxlib.h"
+
+1475704920 /home/moosey/Code-Projects/Cmps-104a/Assignment-1/include/auxlib.h
+	<stdarg.h>
 
