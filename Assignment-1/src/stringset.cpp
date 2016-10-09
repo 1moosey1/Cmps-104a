@@ -49,7 +49,11 @@ void stringset::dump_stringset(FILE* out) {
         }
     }
 
-    fprintf(out, "load_factor = %.3f\n", stringset::string_set.load_factor());
-    fprintf(out, "bucket_count = %zu\n", stringset::string_set.bucket_count());
+    fprintf(out, "load_factor = %.3f\n",
+        stringset::string_set.load_factor());
+
+    fprintf(out, "bucket_count = %zu\n",
+        stringset::string_set.bucket_count());
+
     fprintf(out, "max_bucket_size = %zu\n", max_bucket_depth);
 }

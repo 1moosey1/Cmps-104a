@@ -25,7 +25,7 @@
 	<unistd.h>
 	"stringset.h"
 
-1475565511 source:/home/moosey/Cmps-104a/Assignment-1/src/stringset.cpp
+1475980733 source:/home/moosey/Cmps-104a/Assignment-1/src/stringset.cpp
 	"stringset.h"
 
 1475565509 /home/moosey/Cmps-104a/Assignment-1/include/stringset.h
@@ -48,7 +48,7 @@
 1475559645 /home/moosey/Cmps-104a/Assignment-1/include/auxlib.h
 	<stdarg.h>
 
-1475625768 source:/home/moosey/Cmps-104a/Assignment-1/main.cpp
+1475981492 source:/home/moosey/Cmps-104a/Assignment-1/main.cpp
 	<iostream>
 	<string>
 	<stdio.h>

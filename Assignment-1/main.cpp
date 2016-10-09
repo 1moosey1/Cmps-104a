@@ -1,5 +1,5 @@
 /* Juan Gonzalez
-    1497521
+   1497521
     CMPS104a Assignment 1
 
     DEBUGGING
@@ -28,7 +28,8 @@ struct file_op {
 };
 
 // Scans through command line options using optget(3)
-void options( int argc, char * argv[], const char * options, file_op &ops ) {
+void options( int argc, char * argv[],
+    const char * options, file_op &ops ) {
 
     int op;
     while ( (op = getopt( argc, argv, options )) != -1 ) {
@@ -56,7 +57,7 @@ void options( int argc, char * argv[], const char * options, file_op &ops ) {
             case '?':
 
                 if ( optopt == '@' || optopt == 'D' )
-                    fprintf(stderr, "The option -%c requires an argument\n", optopt);
+                    fprintf(stderr, "-%c needs an argument\n", optopt);
                 else
                     fprintf(stderr, "Invalid option: -%c\n", optopt);
         }
@@ -76,9 +77,11 @@ void options( int argc, char * argv[], const char * options, file_op &ops ) {
 bool verify( char * file_name ) {
 
     char * pos = strrchr(file_name, '.');
-    DEBUGF( 'f', "File Verification: %d\n", pos && (strcmp(pos, ".oc") == 0) );
 
-    return pos && (strcmp(pos, ".oc") == 0);
+    bool check = pos && (strcmp(pos, ".oc") == 0);
+    DEBUGF( 'f', "File Verification: %d\n", check );
+
+    return check;
 }
 
 void read_pipe( const char * cmd_line, stringset &set ) {
@@ -114,7 +117,10 @@ void read_pipe( const char * cmd_line, stringset &set ) {
 
 void write_file( char * path, string extension, stringset set ) {
 
-    string file_name = basename(path);
+    string file_name = path;
+    file_name = file_name.substr(0, file_name.find_last_of('.'));
+    DEBUGF('f', "Basename: %s\n", file_name.c_str());
+
     file_name.append(extension);
     DEBUGF('f', "Writing to file -> %s\n", file_name.c_str());
 
@@ -130,7 +136,7 @@ int main( int argc, char * argv[] ) {
     DEBUGF( 'f', "File Name: %s\n", ops.file_name );
     if ( !ops.file_name || !verify(ops.file_name) ) {
 
-        fprintf(stderr, "Invalid .oc program file or was not provided!");
+        fprintf(stderr, "Invalid .oc file or was not provided!");
         set_exitstatus( EXIT_FAILURE );
         return get_exitstatus();
     }
