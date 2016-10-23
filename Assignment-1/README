@@ -1,0 +1,49 @@
+Juan Gonzalez, 1497521
+
+Assignment 1
+
+    Included:
+        README
+        Makefile
+        main.cpp
+        stringset.cpp
+        stringset.h
+        auxlib.cpp
+        auxlib.h
+
+NOTES:
+
+* Shortened first part of URL to solve checksource complaints
+SOURCE -> http://www2.ucsc.edu/courses/cmps104a-wm/:
+
+********
+Makefile
+
+Slightly modififed version of Wesley Mackey's original
+SOURCE/Assignments/code/string_set/Makefile
+
+********
+stringset.cpp
+
+Object oriented version of Wesley Mackey's original
+SOURCE/Assignments/code/string_set/string_set.cpp
+
+********
+stringset.h
+
+Object oriented version of Wesley Mackey's original
+SOURCE/Assignments/code/string_set/string_set.h
+
+********
+auxlib.cpp
+
+Utility code from
+SOURCE/Assignments/code/utility-code/auxlib.cpp
+
+********
+auxlib.h
+
+Utility code from
+SOURCE/Assignments/code/utility-code/auxlib.h
+
+
