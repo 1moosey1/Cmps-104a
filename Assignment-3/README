@@ -1,0 +1,53 @@
+Juan Gonzalez, 1497521
+
+Assignment 3
+
+    Included:
+        README
+        Makefile
+        main.cpp
+        stringset.cpp
+        stringset.h
+        auxlib.cpp
+        auxlib.h
+        astree.cpp
+        astree.h
+        lyutils.cpp
+        lyutils.h
+        parser.y
+        scanner.l
+
+NOTES:
+
+make all will generate flex and bison files
+
+
+* Shortened first part of URL to solve checksource complaints
+SOURCE -> http://www2.ucsc.edu/courses/cmps104a-wm/:
+
+Makefile
+********
+Slightly modififed version of Wesley Mackey's original
+SOURCE/Assignments/code/string_set/Makefile
+
+
+stringset.h
+stringset.cpp
+********
+Wesley Mackey's implementation of stringset cpp/h
+SOURCE/Assignments/code/string_set/
+
+
+auxlib.h astree.h lyutils.h
+auxlib.cpp astree.cpp lyutils.cpp
+********
+Utility code from
+SOURCE/Assignments/code/utility-code/
+
+
+parser.y
+scanner.l
+********
+Inspired by Wesley Mackey's example scanner
+SOURCE/Assignments/code/utility-code/e08.expr-smc/
+Files: lexer.l & parser.y
